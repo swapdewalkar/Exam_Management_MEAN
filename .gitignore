@@ -3,4 +3,7 @@ client/node_modules
 rough
 to do
 client/bower_components
-client/app/*js*
+npm-debug.log
+client/app/*.js*
+client/app/components/tasks/*.js*
+client/app/services/*.js*
