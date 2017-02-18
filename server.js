@@ -20,6 +20,10 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use('/',index);
 app.use('/api',tasks);
 app.use('/db',dbhandle);
+app.all('/*', function(req, res, next) {
+    // Just send the index.html for other files to support HTML5Mode
+    res.render('index.html');
+});
 
 app.listen(port,function(){
   console.log('Server Started...');
