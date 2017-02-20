@@ -1,8 +1,7 @@
 import {Component} from '@angular/core';
-import {TaskService} from '../../services/task.service'
-import {Task} from '../../../tasks'
+import {TaskService} from '../../services/task.service';
+import {Task} from './tasks';
 @Component({
-  
     selector: 'tasks',
     templateUrl: './app/components/tasks/tasks.component.html',
 })

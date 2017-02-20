@@ -13,6 +13,7 @@ import { DashboardComponent }  from './dashboard.component';
 import { UserDetailComponent } from './user-details.component';
 import { UsersComponent } from './users.component';
 import { TaskComponent } from './components/tasks/tasks.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 
@@ -28,7 +29,8 @@ import { TaskComponent } from './components/tasks/tasks.component';
     UserDetailComponent,
     UsersComponent,
     DashboardComponent,
-    TaskComponent
+    TaskComponent,
+    ProfileComponent
   ],
   providers: [
     UserService,
