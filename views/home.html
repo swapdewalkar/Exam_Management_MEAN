@@ -1,0 +1,21 @@
+<html>
+    <body>
+    <h1> Login Page</h1>
+    <p>lead Say something worthwhile here</p>
+    <br/>
+  <a href="/"> Go home</a>
+    <br>
+    <a href="/ping"> Ping</a>
+    <% if (typeof user != 'object' && !user) { %>
+
+      <a href="/login"> Login</a>
+      <br/>
+      <a href="/register"> Register</a>
+    <% } %>
+    <% if (typeof user == 'object' || user) { %>
+       <p> You are currently logged in as <%= user.username %></p>
+      <a href="/logout"> Logout</a>
+      <% } %>
+
+    </body>
+    </html>

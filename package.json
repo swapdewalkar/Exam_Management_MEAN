@@ -1,5 +1,5 @@
 {
-  "name": "MyTaskList",
+  "name": "Exam_Management",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "BSD-2-Clause",
+  "license": "",
   "dependencies": {
     "ejs": "~2.5.5",
     "body-parser": "~1.16.1",
@@ -15,6 +15,12 @@
     "mongojs": "~2.4.0",
     "mongodb": "~2.2.24",
     "mongoose": "~4.8.2",
-    "bcryptjs": "~2.4.3"
+    "bcryptjs": "~2.4.3",
+    "passport-local-mongoose": "~0.2.5",
+    "passport": "~0.1.17",
+    "passport-local": "~0.1.6",
+    "method-override":"*",
+    "express-session": "*",
+    "cookie-parser":"*"
   }
 }
