@@ -3,6 +3,7 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var tasks = require('./routes/tasks');
+var account = require('./routes/account');
 var dbhandle = require('./routes/dbhandle');
 var methodOverride = require('method-override');
 var session = require('express-session');
@@ -37,6 +38,7 @@ passport.deserializeUser(Account.deserializeUser());
 
 app.use('/',index);
 app.use('/api',tasks);
+app.use('/account',account);
 app.use('/db',dbhandle);
 app.all('/*', function(req, res, next) {
     res.render('index.html');

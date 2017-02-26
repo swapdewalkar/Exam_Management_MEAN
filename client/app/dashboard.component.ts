@@ -10,11 +10,8 @@ import { UserService } from './user.service';
   styleUrls: [ './dashboard.component.css' ]
 })
 export class DashboardComponent implements OnInit {
-
   users: User[] = [];
-
   constructor(private userService: UserService) { }
-
   ngOnInit(): void {
     this.userService.getUsers()
       .then(users => this.users = users.slice(1, 5));
