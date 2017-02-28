@@ -8,34 +8,25 @@ import 'rxjs/add/operator/catch';
 export class AuthService {
     isLoggedin: boolean;
 
-
     constructor(private http:Http,private router:Router){
       console.log("started");
       this.isLoggedin=false;
+    }
+
+    isAuth(){
+        return this.http.get("/account/check")
+        .map(function(res){
+          return status=res.json().status;
+        });
     }
 
     getStatus(){
       return this.isLoggedin;
     }
 
-    getTasks(){
-      return this.http.get("/api/l")
-      .map(res=> res.json());
-    }
-    // getLogin(newAccount): Promise<statusData> {
-    //   return this.http.get("/account/log")
-    //              .toPromise()
-    //              .then(function(response){
-    //                console.log(response.json().status);
-    //               return response.json() as statusData
-    //              })
-    //              .catch(this.handleError);
-    // }
     getLogin(loginAccount): Promise<statusData> {
       var headers=new Headers();
-    //  headers.append('Content-Type', 'application/X-www-form-urlencoded');
-      //var creds = 'username=' + loginAccount.username + '&password=' + loginAccount.password;
-      headers.append('Content-Type','application/json');
+    headers.append('Content-Type','application/json');
       return this.http.post('/account/angularLogin', JSON.stringify(loginAccount), {headers: headers})
       .toPromise()
       .then((response)=>{
@@ -50,6 +41,7 @@ export class AuthService {
       })
       .catch(this.handleError);
     }
+
     private handleError(error: any): Promise<any> {
        return Promise.reject(error.message || error);
      }
@@ -63,25 +55,13 @@ export class AuthService {
       .then(function(response){
       console.log(response.json().status);
       return response.json() as statusData;
-        //  console.log(data.json().status);
-        //   if(data.json().success) {
-        //       window.localStorage.setItem('auth_key', data.json().token);
-        //       this.isLoggedin = true;
-        //     }
-        //       resolve(this.isLoggedin);
       });
     }
 
     getLogOut(){
         localStorage.removeItem("user");
         localStorage.removeItem("id");
-        this.isLoggedin = false;
-        this.router.navigate(['/login']);
+        return this.http.get("/account/logout").map((res)=>{res});
     }
-    checkCredentials(){
-         if (localStorage.getItem("user") === null){
-             this._router.navigate(['/login']);
-    }
-
-}
+  }
 }

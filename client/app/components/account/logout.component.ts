@@ -4,13 +4,11 @@ import { Router } from '@angular/router';
 import {AuthService} from '../../services/auth.service';
 @Component({
     selector: 'logout',
-    templateUrl: 'Logging you out.............!'
+    template: 'Logging you out.............!'
 })
 export class LogOutComponent implements OnInit  {
 
-  constructor( private authService:AuthService){
-    this.authService.getLogOut();
-    
+  constructor( private authService:AuthService,private router:Router){
+    this.authService.getLogOut().subscribe(res=> this.router.navigate(['/login']));
   }
-
 }

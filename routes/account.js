@@ -14,9 +14,6 @@ router.get('/home', function(req, res) {
   });
 
 router.post('/register', function(req, res) {
-
-console.log(req.body.username);
-console.log(req.body.password);
     Account.register(new Account({ username : req.body.username }), req.body.password, function(err, account) {
         if (err) {
           return res.render("register.html", {info: "Sorry. That username already exists. Try again."});
@@ -35,53 +32,27 @@ router.post('/login', passport.authenticate('local'), function(req, res) {
   res.redirect('/account/home');
 });
 
-router.post('/angularLogin', passport.authenticate('local'), function(req, res) {
-  console.log(JSON.toString(res));
-  req.user.status="Login";
-  res.send(req.user);
-});
-
 router.get('/logout', function(req, res) {
     req.logout();
-    res.redirect('/account/home');
+    req.session.destroy();
+    res.json({"status":false});
 });
 
 router.get('/ping', function(req, res){
     res.status(200).send("pong!");
 });
 
-router.post('/reg',function(req,res,next){
-  Account.register(new Account({ username : req.body.username }), req.body.password, function(err, account) {
-      if (err) {
-        return res.render("register.html", {info: "Sorry. That username already exists. Try again."});
-      }
-      passport.authenticate('local')(req, res, function () {
-        res.redirect('/account/home');
-      });
-  });
+
+router.post('/angularLogin', passport.authenticate('local'), function(req, res) {
+  req.user.status="Login";
+  res.send(req.user);
 });
 
-
-// router.get('/l',function(req,res,next){
-//
-//   console.log("Here");
-//   Account.register(new Account({ username : "swapnil" }), "swapnil", function(err, account) {
-//     if (err) {
-//       console.log(err);
-//       }
-//     else {
-//       passport.authenticate('local')(req, res, function () {
-//       //  res.redirect('/account/home');
-//       });
-//     }
-//   });
-// });
 router.post('/registerAngular',function(req,res,next){
 
-  console.log("Here"+req.body.username+req.body.password);
   Account.register(new Account({ username : req.body.username }), req.body.password, function(err, account) {
     if (err) {
-      console.log(err);
+      res.send('{"status":"'+err.message+'"}');
       }
     else {
       passport.authenticate('local')(req, res, function () {
@@ -92,9 +63,11 @@ router.post('/registerAngular',function(req,res,next){
 });
 
 
-router.get('/log',  function(req, res) {
-res.json({"status":"okay"});
+router.get('/check',  function(req, res,next) {
+  if (req.isAuthenticated()){
+    return 	res.send({"status":true});
+  }
+	return res.send({"status":false});
 });
-
 
 module.exports=router;

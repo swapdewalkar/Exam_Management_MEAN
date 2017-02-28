@@ -14,9 +14,6 @@ export class LogInComponent implements OnInit  {
         constructor(
          private router: Router,
          private authService:AuthService){
-           if(this.authService.isLoggedin ==true){
-             this.goToDashboard();
-           }
         }
 
         login(event){

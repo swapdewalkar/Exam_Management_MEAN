@@ -9,3 +9,4 @@ client/app/components/tasks/*.js*
 client/app/services/*.js*
 client/app/components/profile/*.js*
 client/app/components/account/*.js*
+script.sh

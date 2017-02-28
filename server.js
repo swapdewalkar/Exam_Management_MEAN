@@ -36,6 +36,7 @@ passport.use(new LocalStrategy(Account.authenticate()));
 passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
 
+
 app.use('/',index);
 app.use('/api',tasks);
 app.use('/account',account);
